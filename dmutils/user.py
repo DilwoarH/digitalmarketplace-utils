@@ -7,7 +7,7 @@ def user_has_role(user, role):
 
 class User():
     def __init__(self, user_id, email_address, supplier_id, supplier_name,
-                 locked, active, name, role):
+                 locked, active, name, role, permissions_list):
         self.id = user_id
         self.email_address = email_address
         self.name = name
@@ -16,6 +16,7 @@ class User():
         self.supplier_name = supplier_name
         self.locked = locked
         self.active = active
+        self.permissions_list = permissions_list
 
     def is_authenticated(self):
         return self.is_active()
@@ -35,6 +36,12 @@ class User():
     def has_any_role(self, *roles):
         return any(self.has_role(role) for role in roles)
 
+    def has_permission(self, permission):
+        return permission in self.permissions_list
+
+    def has_all_permissions(self, *permissions):
+        return all(self.has_permission(perm) for perm in permissions)
+
     def get_id(self):
         try:
             return unicode(self.id)  # python 2
@@ -49,6 +56,7 @@ class User():
             'supplierId': self.supplier_id,
             'supplierName': self.supplier_name,
             'locked': self.locked,
+            'permissions': self.permissions_list
         }
 
     @staticmethod
@@ -67,7 +75,8 @@ class User():
             locked=user.get('locked', False),
             active=user.get('active', True),
             name=user['name'],
-            role=user['role']
+            role=user['role'],
+            permissions_list=user['permissions']
         )
 
     @staticmethod
