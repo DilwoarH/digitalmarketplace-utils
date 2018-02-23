@@ -2,6 +2,10 @@
 
 Records breaking changes from major version bumps
 
+## 32.0.0
+
+PR: [#343](https://github.com/alphagov/digitalmarketplace-utils/pull/343)
+
 ## 31.0.0
 
 PR: [#343](https://github.com/alphagov/digitalmarketplace-utils/pull/343)
