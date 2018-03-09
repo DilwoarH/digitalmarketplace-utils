@@ -9,7 +9,7 @@ from flask.ctx import has_request_context
 from pythonjsonlogger.jsonlogger import JsonFormatter as BaseJSONFormatter
 
 LOG_FORMAT = '%(asctime)s %(app_name)s %(name)s %(levelname)s ' \
-             '%(trace_id)s "%(message)s" [in %(pathname)s:%(lineno)d]'
+             '%(trace_id)s %(span_id)s %(parent_span_id)s "%(message)s" [in %(pathname)s:%(lineno)d]'
 
 logger = logging.getLogger(__name__)
 

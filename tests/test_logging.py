@@ -135,6 +135,10 @@ class TestJSONFormatter(object):
         assert 'trace_id' not in result
         assert 'application' in result
         assert 'app_name' not in result
+        assert 'spanId' in result
+        assert 'span_id' not in result
+        assert 'parentSpanId' in result
+        assert 'parent_span_id' not in result
 
     def test_log_type_is_set_to_application(self):
         self.logger.info("hello")
